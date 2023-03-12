@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyRow());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MyTheme(),
+      home: NoRowingScrolling(),
       debugShowCheckedModeBanner: false,
       //  Text("testing------------------")
     );
@@ -151,5 +151,205 @@ class MyRow extends StatelessWidget {
     );
     // TODO: implement build
     throw UnimplementedError();
+  }
+}
+
+class ListViewLikeColumn extends StatelessWidget {
+  const ListViewLikeColumn({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: SafeArea(
+        child: const Scaffold(),
+      ),
+    );
+  }
+}
+
+class ResponsiveWindowMediaQuery extends StatelessWidget {
+  const ResponsiveWindowMediaQuery({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: SafeArea(
+        child: Scaffold(
+          appBar: AppBar(title: Text("Responsive")),
+          body: Center(
+            child: Container(
+              height: MediaQuery.of(context).size.height / 5,
+              width: MediaQuery.of(context).size.width / 3,
+              color: Colors.amberAccent,
+              child: const Center(
+                child: Text("Responsive"),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class StackBody extends StatelessWidget {
+  //
+  const StackBody({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: SafeArea(
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text("Body in body"),
+          ),
+          body: Center(
+            child: Stack(
+              alignment: Alignment.centerLeft,
+              children: [
+                Container(
+                  height: MediaQuery.of(context).size.height / 5,
+                  width: MediaQuery.of(context).size.width / 3,
+                  color: Color.fromARGB(255, 45, 172, 45),
+                  alignment: Alignment.center,
+                ),
+                Positioned(
+                  child: CircleAvatar(
+                    radius: 50,
+                    backgroundColor: Color.fromARGB(255, 228, 18, 18),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class ImageShow extends StatelessWidget {
+  const ImageShow({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: SafeArea(
+        child: Scaffold(
+          body: Center(
+            // child: Image.asset("images/pro.jpg"),
+            child: Image.network(
+              "https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8&w=1000&q=80",
+              height: MediaQuery.of(context).size.height / 5,
+              width: MediaQuery.of(context).size.width / 3,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class MyRowingScrolling extends StatelessWidget {
+  const MyRowingScrolling({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: SafeArea(
+        child: Scaffold(
+          appBar: AppBar(title: Text("Row")),
+          body: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                Container(
+                  color: Colors.amber,
+                  height: double.infinity,
+                  width: 100,
+                ),
+                Container(
+                  color: Colors.amberAccent,
+                  height: double.infinity,
+                  width: 100,
+                ),
+                Container(
+                  color: Colors.blue,
+                  height: double.infinity,
+                  width: 100,
+                ),
+                Container(
+                  color: Colors.blueAccent,
+                  height: double.infinity,
+                  width: 100,
+                ),
+                Container(
+                  color: Colors.blueGrey,
+                  height: double.infinity,
+                  width: 100,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class NoRowingScrolling extends StatelessWidget {
+  const NoRowingScrolling({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: SafeArea(
+        child: Scaffold(
+          appBar: AppBar(title: Text("Row")),
+          body: Row(
+            children: [
+              Expanded(
+                child: Container(
+                  color: Colors.amber,
+                  height: double.infinity,
+                  width: 100,
+                ),
+              ),
+              Expanded(
+                child: Container(
+                  color: Colors.amberAccent,
+                  height: double.infinity,
+                  width: 100,
+                ),
+              ),
+              Expanded(
+                child: Container(
+                  color: Colors.blue,
+                  height: double.infinity,
+                  width: 100,
+                ),
+              ),
+              Expanded(
+                child: Container(
+                  color: Colors.blueAccent,
+                  height: double.infinity,
+                  width: 100,
+                ),
+              ),
+              Expanded(
+                child: Container(
+                  color: Colors.blueGrey,
+                  height: double.infinity,
+                  width: 100,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
