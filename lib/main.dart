@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:foodapp/FirstPageContainer.dart';
+import 'package:foodapp/SndPageContainerColor.dart';
+import 'package:foodapp/ThirdPageContainerColor.dart';
+import 'package:foodapp/login.dart';
+import 'package:liquid_swipe/liquid_swipe.dart';
 
 void main() {
   runApp(MyApp());
@@ -9,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: NoRowingScrolling(),
+      home: login(),
       debugShowCheckedModeBanner: false,
       //  Text("testing------------------")
     );
@@ -163,7 +168,27 @@ class ListViewLikeColumn extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: SafeArea(
-        child: const Scaffold(),
+        child: Scaffold(
+          body: ListView(
+            children: [
+              Container(
+                height: 100,
+                width: double.infinity,
+                color: Colors.green,
+              ),
+              Container(
+                height: 100,
+                width: double.infinity,
+                color: Colors.greenAccent,
+              ),
+              Container(
+                height: 100,
+                width: double.infinity,
+                color: Colors.lightGreenAccent,
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -347,6 +372,153 @@ class NoRowingScrolling extends StatelessWidget {
                 ),
               ),
             ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class ListTileWith extends StatelessWidget {
+  const ListTileWith({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: SafeArea(
+        child: Scaffold(
+          appBar: AppBar(title: Text("List Tile")),
+          body: ListView(
+            children: [
+              ListTile(
+                title: Text("List Title1"),
+                subtitle: Text("List title description"),
+                leading: CircleAvatar(
+                  //left side icon
+                  child: Icon(Icons.add_call),
+                ),
+                trailing: Icon(
+                  //right side icon
+                  Icons.call_made_rounded,
+                  size: 30,
+                  color: Colors.redAccent,
+                ),
+              ),
+              ListTile(
+                title: Text("List Title2"),
+                subtitle: Text("List title description"),
+                leading: CircleAvatar(
+                  child: Icon(Icons.add_call),
+                ),
+                trailing: Icon(
+                  Icons.call_made_rounded,
+                  size: 30,
+                  color: Colors.green,
+                ),
+              ),
+              ListTile(
+                title: Text("List Title3"),
+                subtitle: Text("List title description"),
+                leading: CircleAvatar(
+                  child: Icon(Icons.add_call),
+                ),
+                trailing: Icon(
+                  Icons.call_made_rounded,
+                  size: 30,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class PageColorChangeSlideView extends StatelessWidget {
+  const PageColorChangeSlideView({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final pages = [
+      Container(
+        color: Colors.deepOrangeAccent,
+        child: Center(child: Text("Ist Page...............")),
+      ),
+      Container(
+        color: Colors.amber,
+        child: Center(child: Text("2nd Page...............")),
+      ),
+      Container(
+        color: Colors.amberAccent,
+        child: Center(child: Text("3rd Page...............")),
+      )
+    ];
+    return MaterialApp(
+      home: SafeArea(
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text("change Page"),
+          ),
+          body: LiquidSwipe(pages: pages),
+        ),
+      ),
+    );
+  }
+}
+
+class ListOfPageChanging extends StatelessWidget {
+  final page = [
+    FirstPage(),
+    SndPage(),
+    ThirdPage(),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: SafeArea(
+          child: Scaffold(
+        appBar: AppBar(title: Text("changes page")),
+        body: LiquidSwipe(pages: page),
+      )),
+    );
+  }
+}
+
+class GridViewPage extends StatelessWidget {
+  const GridViewPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: SafeArea(
+        child: Scaffold(
+          appBar: AppBar(title: Text("Grid View")),
+          body: Padding(
+            padding: EdgeInsets.all(6.0),
+            child: GridView.count(
+              mainAxisSpacing: 8,
+              crossAxisCount: 4,
+              crossAxisSpacing: 8,
+              children: [
+                Container(
+                  color: Colors.blueAccent,
+                  height: 250,
+                  width: 250,
+                ),
+                Container(
+                  color: Color.fromARGB(255, 193, 127, 107),
+                  height: 250,
+                  width: 250,
+                ),
+                Container(
+                  color: Color.fromARGB(255, 190, 205, 233),
+                  height: 250,
+                  width: 250,
+                ),
+              ],
+            ),
           ),
         ),
       ),
