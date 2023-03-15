@@ -10,17 +10,21 @@ class login extends StatelessWidget {
     return MaterialApp(
       home: SafeArea(
         child: Scaffold(
+          appBar: AppBar(title: Text("login")),
           body: Padding(
             padding: EdgeInsets.all(10.0),
             child: Column(
               children: [
-                Row(
-                  children: [
-                    Container(
-                      child: TextField(autofocus: true),
-                    )
-                  ],
+                Container(
+                  color: Colors.amber,
                 )
+                // Row(
+                //   children: [
+                //     Container(
+                //       child: TextField(autofocus: true),
+                //     )
+                //   ],
+                // )
               ],
             ),
           ),

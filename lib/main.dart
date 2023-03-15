@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: login(),
+      home: AppBarWithPageChange(),
       debugShowCheckedModeBanner: false,
       //  Text("testing------------------")
     );
@@ -521,6 +521,78 @@ class GridViewPage extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class FirstStateful extends StatefulWidget {
+  const FirstStateful({Key? key}) : super(key: key);
+
+  @override
+  State<FirstStateful> createState() => _FirstStatefulState();
+}
+
+class _FirstStatefulState extends State<FirstStateful> {
+  var _currentState = 0;
+  final pages = [
+    FirstPage(),
+    SndPage(),
+    ThirdPage(),
+  ];
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentState,
+        items: [
+          BottomNavigationBarItem(
+              label: "Label 1", icon: Icon(Icons.access_alarm)),
+          BottomNavigationBarItem(
+              label: "Label 2", icon: Icon(Icons.width_full_outlined)),
+          BottomNavigationBarItem(
+              label: "Label 3", icon: Icon(Icons.admin_panel_settings_rounded)),
+        ],
+        onTap: (index) {
+          setState(() {
+            _currentState = index;
+          });
+        },
+      ),
+      body: pages[_currentState],
+    );
+  }
+}
+
+class AppBarWithPageChange extends StatelessWidget {
+  const AppBarWithPageChange({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        appBar: AppBar(
+          bottom: TabBar(tabs: [
+            Tab(
+              text: "Tab 1",
+              icon: Icon(Icons.yard),
+            ),
+            Tab(
+              text: "Tab 2",
+              icon: Icon(Icons.add_home),
+            ),
+            Tab(
+              text: "Tab 3",
+              icon: Icon(Icons.bathtub),
+            ),
+          ]),
+        ),
+        body: TabBarView(children: [
+          FirstPage(),
+          SndPage(),
+          ThirdPage(),
+        ]),
       ),
     );
   }
